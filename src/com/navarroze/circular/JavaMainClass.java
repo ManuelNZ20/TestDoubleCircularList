@@ -12,6 +12,9 @@ public class JavaMainClass {
         c1.addEnd(9);
         System.out.println("list: "+c1.listNext());
         System.out.println("list: "+c1.listPrevious());
+        c1.removeStart();
+        System.out.println("list: "+c1.listNext());
+        System.out.println("list: "+c1.listPrevious());
     }
     
 }

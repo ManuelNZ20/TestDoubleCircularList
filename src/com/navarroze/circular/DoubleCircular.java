@@ -35,10 +35,22 @@ public class DoubleCircular {
             newnode.setPrevious(end);
             end = newnode;
             end.setNext(start);
-            start.setPrevious(end);
+            start.setPrevious(end); 
         }
     }
     
+    public void removeStart(){
+        if (start==end) {
+            start = end = null;
+        }else{
+            Node aux = start;
+            start = start.getNext();
+            start.setPrevious(end);
+            end.setNext(start);
+            aux.setNext(null);
+            aux.setPrevious(null);
+        }
+    }
     
     public String listNext(){
         String list = "";
