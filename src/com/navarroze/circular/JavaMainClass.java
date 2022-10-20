@@ -3,7 +3,7 @@ package com.navarroze.circular;
 public class JavaMainClass {
 
     public static void main(String[] args) {
-        final int date = 50;
+        final int date = 0;
         DoubleCircular c1 = new DoubleCircular();
         c1.addStart(1);
         c1.addStart(2);
@@ -25,6 +25,8 @@ public class JavaMainClass {
         } else {
             System.out.println("El nodo no existe en la list");
         }
+        c1.ordered();
+        System.out.println("list: " + c1.listNext());
 //        System.out.println("list: "+c1.listPrevious());
     }
 

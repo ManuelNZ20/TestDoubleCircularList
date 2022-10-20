@@ -122,6 +122,25 @@ public class DoubleCircular {
         }
         return null;
     }
+    
+    public void ordered(){
+        if (!isEmpty()) {
+            int date = 0;
+            Node i = start, j = null;
+            do {
+                j = i.getNext();
+                while(j!=start){
+                    if (i.getDate()>j.getDate()) {
+                        date = i.getDate();
+                        i.setDate(j.getDate());
+                        j.setDate(date);
+                    }
+                    j = j.getNext();
+                }
+                i = i.getNext();
+            } while (i!=start);
+        }
+    }
 
     public String listNext() {
         String list = "";
