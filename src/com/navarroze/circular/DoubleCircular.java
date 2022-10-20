@@ -52,11 +52,10 @@ public class DoubleCircular {
         }
     }
 
-    public void removeEnd(){
-        if (start==end) {
+    public void removeEnd() {
+        if (start == end) {
             start = end = null;
-        }else
-        {
+        } else {
             Node aux = end;
             end = end.getPrevious();
             end.setNext(start);
@@ -65,7 +64,48 @@ public class DoubleCircular {
             aux.setPrevious(null);
         }
     }
-    
+
+    public void remove(int date) {
+        if (!isEmpty()) {
+            Node cur = start, prev = null,aux;
+            do {
+                if (cur.getDate() == date) {
+                    if (prev == null) {
+                        if (start == end) {
+                            start = end = null;
+                        }else{
+                            aux = start;
+                            start = start.getNext();
+                            end.setNext(start);
+                            start.setPrevious(end);
+                            aux.setNext(null);
+                            aux.setPrevious(null);
+                        }
+                        cur = start.getNext();
+                        prev = null;
+                    } else {
+                        aux = cur;
+                        if (cur==end) {
+                            end = prev;
+                            end.setNext(start);
+                            start.setPrevious(end);
+                            cur = start;
+                        }else{
+                            cur = cur.getNext();
+                            prev.setNext(cur);
+                            cur.setPrevious(prev);
+                        }
+                        aux.setNext(null);
+                        aux.setPrevious(null);
+                    }
+                } else {
+                    prev = cur;
+                    cur = cur.getNext();
+                }
+            } while (cur != start);
+        }
+    }
+
     public String listNext() {
         String list = "";
         if (!isEmpty()) {
