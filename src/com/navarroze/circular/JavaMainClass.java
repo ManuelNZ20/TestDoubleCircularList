@@ -9,6 +9,7 @@ public class JavaMainClass {
         c1.addStart(7);
         c1.addStart(0);
         System.out.println("list: "+c1.listNext());
+        System.out.println("list: "+c1.listPrevious());
     }
     
 }

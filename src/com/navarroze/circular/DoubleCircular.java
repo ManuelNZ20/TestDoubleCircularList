@@ -35,4 +35,15 @@ public class DoubleCircular {
         } while (node!=start);
         return list;
     }
+    
+    public String listPrevious(){
+        String list = "";
+        Node node = end;
+        do {
+            list += (node.getPrevious()!=end)?node.getDate()+" <-> ":node.getDate();
+            node = node.getPrevious();
+        } while (node!=end);
+        return list;
+    }
+    
 }
