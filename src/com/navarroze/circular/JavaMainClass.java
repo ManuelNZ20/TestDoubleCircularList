@@ -28,6 +28,19 @@ public class JavaMainClass {
         c1.ordered();
         System.out.println("list: " + c1.listNext());
 //        System.out.println("list: "+c1.listPrevious());
+        DoubleCircular c2 = new DoubleCircular();
+        c2.addNodeAsc(8);
+        c2.addNodeAsc(1);
+        c2.addNodeAsc(5);
+        c2.addNodeAsc(0);
+        c2.addNodeAsc(2);
+        c2.addNodeAsc(9);
+        c2.addNodeAsc(3);
+        c2.addNodeAsc(6);
+        c2.addNodeAsc(4);
+        c2.addNodeAsc(7);
+        System.out.println("list2: \n"
+                + c2.listNext());
     }
 
 }

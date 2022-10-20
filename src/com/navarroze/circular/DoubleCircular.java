@@ -114,23 +114,23 @@ public class DoubleCircular {
         if (!isEmpty()) {
             Node n = start;
             do {
-                if (n.getDate()==date) {
+                if (n.getDate() == date) {
                     return n;
                 }
                 n = n.getNext();
-            } while (n!=start);
+            } while (n != start);
         }
         return null;
     }
-    
-    public void ordered(){
+
+    public void ordered() {
         if (!isEmpty()) {
             int date = 0;
             Node i = start, j = null;
             do {
                 j = i.getNext();
-                while(j!=start){
-                    if (i.getDate()>j.getDate()) {
+                while (j != start) {
+                    if (i.getDate() > j.getDate()) {
                         date = i.getDate();
                         i.setDate(j.getDate());
                         j.setDate(date);
@@ -138,7 +138,49 @@ public class DoubleCircular {
                     j = j.getNext();
                 }
                 i = i.getNext();
-            } while (i!=start);
+            } while (i != start);
+        }
+    }
+
+    public void addNodeAsc(int date) {
+        Node newnode = new Node(date);
+        if (isEmpty()) {
+            start = end = newnode;
+        } else if (newnode.getDate() < start.getDate()) {
+            newnode.setNext(start);
+            start.setPrevious(newnode);
+            start = newnode;
+            end.setNext(start);
+            start.setPrevious(end);
+        } else {
+            Node cur = start.getNext(), prev = null;
+            boolean enc = false;
+            do {
+                enc = newnode.getDate() < cur.getDate();
+                if (enc) {
+                    if (prev==null) {
+                        start.setNext(newnode);
+                        newnode.setPrevious(start);
+                        newnode.setNext(cur);
+                        cur.setPrevious(newnode);
+                    }else{
+                        prev.setNext(newnode);
+                        newnode.setPrevious(prev);
+                        newnode.setNext(cur);
+                        cur.setPrevious(newnode);
+                    }
+                } else {
+                    prev = cur;
+                    cur = cur.getNext();
+                }
+            } while (cur != start && !enc);
+            if (!enc) {
+                end.setNext(newnode);
+                newnode.setPrevious(end);
+                end = newnode;
+                end.setNext(start);
+                start.setPrevious(end);
+            }
         }
     }
 
