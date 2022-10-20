@@ -184,6 +184,48 @@ public class DoubleCircular {
         }
     }
 
+    public void addNodeDesc(int date){
+        Node newnode = new Node(date);
+        if (isEmpty()) {
+            start = end = newnode;
+        }else if(start.getDate()<newnode.getDate()){
+            newnode.setNext(start);
+            start.setPrevious(newnode);
+            start = newnode;
+            end.setNext(start);
+            start.setPrevious(end);
+        }else{
+            Node cur = start.getNext(),prev = null;
+            boolean enc = false;
+            do {
+                enc = (cur.getDate()<newnode.getDate());
+                if (enc) {
+                    if (prev==null) {
+                        start.setNext(newnode);
+                        newnode.setPrevious(start);
+                        newnode.setNext(cur);
+                        cur.setPrevious(newnode);
+                    }else{
+                        prev.setNext(newnode);
+                        newnode.setPrevious(prev);
+                        newnode.setNext(cur);
+                        cur.setPrevious(newnode);
+                    }
+                }else{
+                    prev = cur;
+                    cur = cur.getNext();
+                }
+            } while (cur!=start&&!enc);
+            if (!enc) {
+                end.setNext(newnode);
+                newnode.setPrevious(end);
+                end = newnode;
+                end.setNext(start);
+                start.setPrevious(end);
+            }
+        }
+    }
+    
     public String listNext() {
         String list = "";
         if (!isEmpty()) {

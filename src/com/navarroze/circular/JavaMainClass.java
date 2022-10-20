@@ -10,6 +10,7 @@ public class JavaMainClass {
         c1.addStart(7);
         c1.addStart(0);
         c1.addStart(9);
+        c1.addStart(9);
         c1.addEnd(9);
         c1.addEnd(8);
         c1.addEnd(5);
@@ -41,6 +42,20 @@ public class JavaMainClass {
         c2.addNodeAsc(7);
         System.out.println("list2: \n"
                 + c2.listNext());
+        
+        DoubleCircular c3 = new DoubleCircular();
+        c3.addNodeDesc(8);
+        c3.addNodeDesc(1);
+        c3.addNodeDesc(5);
+        c3.addNodeDesc(0);
+        c3.addNodeDesc(2);
+        c3.addNodeDesc(9);
+        c3.addNodeDesc(3);
+        c3.addNodeDesc(6);
+        c3.addNodeDesc(4);
+        c3.addNodeDesc(7);
+        System.out.println("list2: \n"
+                + c3.listNext());
     }
 
 }
