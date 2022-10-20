@@ -13,6 +13,7 @@ public class JavaMainClass {
         System.out.println("list: "+c1.listNext());
         System.out.println("list: "+c1.listPrevious());
         c1.removeStart();
+        c1.removeEnd();
         System.out.println("list: "+c1.listNext());
         System.out.println("list: "+c1.listPrevious());
     }

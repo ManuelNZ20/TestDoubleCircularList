@@ -1,23 +1,23 @@
 package com.navarroze.circular;
 
 public class DoubleCircular {
+
     private Node start;
     private Node end;
-    
-    public DoubleCircular(){
+
+    public DoubleCircular() {
         start = end = null;
     }
-    
-    public boolean isEmpty(){
-        return start==null;
+
+    public boolean isEmpty() {
+        return start == null;
     }
-    
-    public void addStart(int date)
-    {
+
+    public void addStart(int date) {
         Node newnode = new Node(date);
         if (isEmpty()) {
             start = end = newnode;
-        }else{
+        } else {
             newnode.setNext(start);
             start.setPrevious(newnode);
             start = newnode;
@@ -25,24 +25,24 @@ public class DoubleCircular {
             start.setPrevious(end);
         }
     }
-    
-    public void addEnd(int date){
+
+    public void addEnd(int date) {
         Node newnode = new Node(date);
         if (isEmpty()) {
             start = end = newnode;
-        }else{
+        } else {
             end.setNext(newnode);
             newnode.setPrevious(end);
             end = newnode;
             end.setNext(start);
-            start.setPrevious(end); 
+            start.setPrevious(end);
         }
     }
-    
-    public void removeStart(){
-        if (start==end) {
+
+    public void removeStart() {
+        if (start == end) {
             start = end = null;
-        }else{
+        } else {
             Node aux = start;
             start = start.getNext();
             start.setPrevious(end);
@@ -51,25 +51,43 @@ public class DoubleCircular {
             aux.setPrevious(null);
         }
     }
-    
-    public String listNext(){
-        String list = "";
-        Node node = start;
-        do {
-            list += (node.getNext()!=start)?node.getDate()+" <-> ":node.getDate();
-            node = node.getNext();
-        } while (node!=start);
-        return list;
+
+    public void removeEnd(){
+        if (start==end) {
+            start = end = null;
+        }else
+        {
+            Node aux = end;
+            end = end.getPrevious();
+            end.setNext(start);
+            start.setPrevious(end);
+            aux.setNext(null);
+            aux.setPrevious(null);
+        }
     }
     
-    public String listPrevious(){
+    public String listNext() {
         String list = "";
-        Node node = end;
-        do {
-            list += (node.getPrevious()!=end)?node.getDate()+" <-> ":node.getDate();
-            node = node.getPrevious();
-        } while (node!=end);
+        if (!isEmpty()) {
+            Node node = start;
+            do {
+                list += (node.getNext() != start) ? node.getDate() + " <-> " : node.getDate();
+                node = node.getNext();
+            } while (node != start);
+        }
         return list;
     }
-    
+
+    public String listPrevious() {
+        String list = "";
+        if (!isEmpty()) {
+            Node node = end;
+            do {
+                list += (node.getPrevious() != end) ? node.getDate() + " <-> " : node.getDate();
+                node = node.getPrevious();
+            } while (node != end);
+        }
+        return list;
+    }
+
 }
