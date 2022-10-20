@@ -26,6 +26,20 @@ public class DoubleCircular {
         }
     }
     
+    public void addEnd(int date){
+        Node newnode = new Node(date);
+        if (isEmpty()) {
+            start = end = newnode;
+        }else{
+            end.setNext(newnode);
+            newnode.setPrevious(end);
+            end = newnode;
+            end.setNext(start);
+            start.setPrevious(end);
+        }
+    }
+    
+    
     public String listNext(){
         String list = "";
         Node node = start;
