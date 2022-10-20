@@ -40,40 +40,44 @@ public class DoubleCircular {
     }
 
     public void removeStart() {
-        if (start == end) {
-            start = end = null;
-        } else {
-            Node aux = start;
-            start = start.getNext();
-            start.setPrevious(end);
-            end.setNext(start);
-            aux.setNext(null);
-            aux.setPrevious(null);
+        if (!isEmpty()) {
+            if (start == end) {
+                start = end = null;
+            } else {
+                Node aux = start;
+                start = start.getNext();
+                start.setPrevious(end);
+                end.setNext(start);
+                aux.setNext(null);
+                aux.setPrevious(null);
+            }
         }
     }
 
     public void removeEnd() {
-        if (start == end) {
-            start = end = null;
-        } else {
-            Node aux = end;
-            end = end.getPrevious();
-            end.setNext(start);
-            start.setPrevious(end);
-            aux.setNext(null);
-            aux.setPrevious(null);
+        if (isEmpty()) {
+            if (start == end) {
+                start = end = null;
+            } else {
+                Node aux = end;
+                end = end.getPrevious();
+                end.setNext(start);
+                start.setPrevious(end);
+                aux.setNext(null);
+                aux.setPrevious(null);
+            }
         }
     }
 
     public void remove(int date) {
         if (!isEmpty()) {
-            Node cur = start, prev = null,aux;
+            Node cur = start, prev = null, aux;
             do {
                 if (cur.getDate() == date) {
                     if (prev == null) {
                         if (start == end) {
                             start = end = null;
-                        }else{
+                        } else {
                             aux = start;
                             start = start.getNext();
                             end.setNext(start);
@@ -85,12 +89,12 @@ public class DoubleCircular {
                         prev = null;
                     } else {
                         aux = cur;
-                        if (cur==end) {
+                        if (cur == end) {
                             end = prev;
                             end.setNext(start);
                             start.setPrevious(end);
                             cur = start;
-                        }else{
+                        } else {
                             cur = cur.getNext();
                             prev.setNext(cur);
                             cur.setPrevious(prev);
@@ -104,6 +108,19 @@ public class DoubleCircular {
                 }
             } while (cur != start);
         }
+    }
+
+    public Node search(int date) {
+        if (!isEmpty()) {
+            Node n = start;
+            do {
+                if (n.getDate()==date) {
+                    return n;
+                }
+                n = n.getNext();
+            } while (n!=start);
+        }
+        return null;
     }
 
     public String listNext() {
